@@ -11,6 +11,7 @@
     },
     "files": [
         "src/cronstrue.ts",
-        "src/cronstrue-i18n.ts"
+        "src/cronstrue-i18n.ts",
+        "src/cronstrue-everrun-i18n.ts"
     ]
 }
