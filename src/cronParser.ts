@@ -79,10 +79,11 @@ export class CronParser {
             expressionParts[4] = expressionParts[4].replace("1/", "*/");
         }
 
-        if (expressionParts[5].indexOf("1/") == 0) {
-            // DOW
-            expressionParts[5] = expressionParts[5].replace("1/", "*/");
-        }
+        // for everRun, do not convert DOW
+        // if (expressionParts[5].indexOf("1/") == 0) {
+        //     // DOW
+        //     expressionParts[5] = expressionParts[5].replace("1/", "*/");
+        // }
 
         if (expressionParts[6].indexOf("1/") == 0) {
             // Years
@@ -158,7 +159,7 @@ export class CronParser {
                 let stepRangeThrough: string = null;
                 switch (i) {
                     case 4: stepRangeThrough = "12"; break;
-                    case 5: stepRangeThrough = "6"; break;
+                    // case 5: stepRangeThrough = "6"; break; // for everRun, do not convert DOW
                     case 6: stepRangeThrough = "9999"; break;
                     default: stepRangeThrough = null; break;
                 }

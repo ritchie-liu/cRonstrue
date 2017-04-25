@@ -382,6 +382,27 @@ export class ExpressionDescriptor {
 
                 description += betweenSegmentDescription;
             }
+            else if (segments[0].indexOf(",") > -1) {
+                let subExp: string = segments[0];
+                let subSegments: string[] = subExp.split(',');
+
+                let descriptionContent: string = "";
+                for (let i = 0; i < subSegments.length; i++) {
+                    if (i > 0 && subSegments.length > 2) {
+                        if (i < subSegments.length - 1) {
+                            descriptionContent += ", ";
+                        }
+                    }
+
+                    if (i > 0 && subSegments.length > 1 && (i == subSegments.length - 1 || subSegments.length == 2)) {
+                        descriptionContent += this.i18n.spaceAndSpace();
+                    }
+
+                    descriptionContent += getSingleItemDescription(subSegments[i]);
+                }
+
+                description += StringUtilities.format(getDescriptionFormat(subExp), descriptionContent);
+            }
             else if (!StringUtilities.containsAny(segments[0], ["*", ","])) {
                 let rangeItemDescription: string = StringUtilities.format(getDescriptionFormat(segments[0]), getSingleItemDescription(segments[0]));
                 //remove any leading comma
@@ -396,10 +417,8 @@ export class ExpressionDescriptor {
             let descriptionContent: string = "";
             for (let i = 0; i < segments.length; i++) {
                 if (i > 0 && segments.length > 2) {
-                    descriptionContent += ",";
-
                     if (i < segments.length - 1) {
-                        descriptionContent += " ";
+                        descriptionContent += ", ";
                     }
                 }
 

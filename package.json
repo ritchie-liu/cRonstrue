@@ -54,7 +54,7 @@
     "test": "./node_modules/.bin/mocha --reporter spec",
     "prerelease": "rm -rf ./dist && webpack && node ./docs/generate.js README.md && git add -A && git commit --allow-empty -m 'Build latest /dist'",
     "release": "npm-github-release",
-    "everRun": "rm -rf ./dist && webpack --config webpack.everrun.config.js"
+    "everRun": "npm run build && rm -rf ./dist && webpack --config webpack.everrun.config.js"
   },
   "dependencies": {}
 }
